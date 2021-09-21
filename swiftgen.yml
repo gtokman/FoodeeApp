@@ -1,0 +1,17 @@
+strings:
+    - inputs:
+        - Foodee/Resources/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Foodee/Generated/String.swift
+xcassets:
+    - inputs:
+        - Foodee/Resources/Assets.xcassets
+      outputs:
+        - templateName: swift5
+          output: Foodee/Generated/Images.swift
+          params:
+            forceProvidesNamespaces: true
+            publicAccess: true
+            allValues: true
+

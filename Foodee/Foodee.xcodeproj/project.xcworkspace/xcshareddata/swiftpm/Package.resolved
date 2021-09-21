@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ExtensionKit",
+        "repositoryURL": "https://github.com/gtokman/ExtensionKit.git",
+        "state": {
+          "branch": null,
+          "revision": "24a0f9726c56f8d0a50c41261a4b29e46693bff9",
+          "version": "1.20.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
