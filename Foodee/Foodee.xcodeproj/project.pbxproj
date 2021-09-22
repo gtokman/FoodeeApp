@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E60B17D26FB54A000497F05 /* FoodCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17C26FB54A000497F05 /* FoodCategories.swift */; };
 		4EBF60C526FA6EC2005AF26F /* FoodeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60C426FA6EC2005AF26F /* FoodeeApp.swift */; };
 		4EBF60C726FA6EC2005AF26F /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60C626FA6EC2005AF26F /* PermissionView.swift */; };
 		4EBF60CC26FA6EC3005AF26F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF60CB26FA6EC3005AF26F /* Preview Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E60B17C26FB54A000497F05 /* FoodCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategories.swift; sourceTree = "<group>"; };
 		4EBF60C126FA6EC2005AF26F /* Foodee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF60C426FA6EC2005AF26F /* FoodeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodeeApp.swift; sourceTree = "<group>"; };
 		4EBF60C626FA6EC2005AF26F /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
@@ -61,9 +63,6 @@
 		4EBF60C326FA6EC2005AF26F /* Foodee */ = {
 			isa = PBXGroup;
 			children = (
-				4EBF60E826FA7619005AF26F /* Services */,
-				4EBF60E726FA7608005AF26F /* ViewModels */,
-				4EBF60E626FA7601005AF26F /* Models */,
 				4EBF60E126FA756C005AF26F /* Views */,
 				4EBF60DB26FA749E005AF26F /* Helpers */,
 				4EBF60D626FA71E9005AF26F /* Generated */,
@@ -95,6 +94,7 @@
 			children = (
 				4EBF60D726FA71E9005AF26F /* String.swift */,
 				4EBF60D826FA71E9005AF26F /* Images.swift */,
+				4E60B17C26FB54A000497F05 /* FoodCategories.swift */,
 			);
 			path = Generated;
 			sourceTree = SOURCE_ROOT;
@@ -130,27 +130,6 @@
 				4EBF60E426FA75FB005AF26F /* HomeView.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		4EBF60E626FA7601005AF26F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		4EBF60E726FA7608005AF26F /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		4EBF60E826FA7619005AF26F /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF60DD26FA74BA005AF26F /* CGFloat.swift in Sources */,
+				4E60B17D26FB54A000497F05 /* FoodCategories.swift in Sources */,
 				4EBF60D926FA71E9005AF26F /* String.swift in Sources */,
 				4EBF60DA26FA71E9005AF26F /* Images.swift in Sources */,
 				4EBF60E526FA75FB005AF26F /* HomeView.swift in Sources */,
