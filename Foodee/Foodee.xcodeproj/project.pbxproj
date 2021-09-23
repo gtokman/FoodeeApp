@@ -11,6 +11,7 @@
 		4E60B17D26FB54A000497F05 /* FoodCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17C26FB54A000497F05 /* FoodCategories.swift */; };
 		4E60B17926FAC84200497F05 /* YelpApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17826FAC84200497F05 /* YelpApiService.swift */; };
 		4E60B17B26FACD9400497F05 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17A26FACD9400497F05 /* HomeViewModel.swift */; };
+		4E60B17D26FB54A000497F05 /* FoodCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17C26FB54A000497F05 /* FoodCategories.swift */; };
 		4EBF60C526FA6EC2005AF26F /* FoodeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60C426FA6EC2005AF26F /* FoodeeApp.swift */; };
 		4EBF60C726FA6EC2005AF26F /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60C626FA6EC2005AF26F /* PermissionView.swift */; };
 		4EBF60CC26FA6EC3005AF26F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF60CB26FA6EC3005AF26F /* Preview Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		4E60B17C26FB54A000497F05 /* FoodCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategories.swift; sourceTree = "<group>"; };
 		4E60B17826FAC84200497F05 /* YelpApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpApiService.swift; sourceTree = "<group>"; };
 		4E60B17A26FACD9400497F05 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4E60B17C26FB54A000497F05 /* FoodCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategories.swift; sourceTree = "<group>"; };
 		4EBF60C126FA6EC2005AF26F /* Foodee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF60C426FA6EC2005AF26F /* FoodeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodeeApp.swift; sourceTree = "<group>"; };
 		4EBF60C626FA6EC2005AF26F /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
