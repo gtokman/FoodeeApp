@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4E60B17B26FACD9400497F05 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17A26FACD9400497F05 /* HomeViewModel.swift */; };
 		4E60B17D26FB54A000497F05 /* FoodCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17C26FB54A000497F05 /* FoodCategories.swift */; };
+		4E60B17926FAC84200497F05 /* YelpApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17826FAC84200497F05 /* YelpApiService.swift */; };
+		4E60B17B26FACD9400497F05 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60B17A26FACD9400497F05 /* HomeViewModel.swift */; };
 		4EBF60C526FA6EC2005AF26F /* FoodeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60C426FA6EC2005AF26F /* FoodeeApp.swift */; };
 		4EBF60C726FA6EC2005AF26F /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60C626FA6EC2005AF26F /* PermissionView.swift */; };
 		4EBF60CC26FA6EC3005AF26F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF60CB26FA6EC3005AF26F /* Preview Assets.xcassets */; };
@@ -24,6 +26,8 @@
 /* Begin PBXFileReference section */
 		4E60B17A26FACD9400497F05 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4E60B17C26FB54A000497F05 /* FoodCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategories.swift; sourceTree = "<group>"; };
+		4E60B17826FAC84200497F05 /* YelpApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpApiService.swift; sourceTree = "<group>"; };
+		4E60B17A26FACD9400497F05 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4EBF60C126FA6EC2005AF26F /* Foodee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF60C426FA6EC2005AF26F /* FoodeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodeeApp.swift; sourceTree = "<group>"; };
 		4EBF60C626FA6EC2005AF26F /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
@@ -52,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E60B17726FAC83500497F05 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4E60B17826FAC84200497F05 /* YelpApiService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4EBF60B826FA6EC1005AF26F = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +87,7 @@
 				4ECB105B26FCC40600DBBFFD /* Poppins-Regular.ttf */,
 				4ECB105A26FCC40600DBBFFD /* Poppins-SemiBold.ttf */,
 				4ECB105926FCC29000DBBFFD /* Info.plist */,
+				4E60B17726FAC83500497F05 /* Services */,
 				4EBF60E126FA756C005AF26F /* Views */,
 				4EBF60DB26FA749E005AF26F /* Helpers */,
 				4EBF60D626FA71E9005AF26F /* Generated */,
@@ -141,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				4EBF60E426FA75FB005AF26F /* HomeView.swift */,
+				4E60B17A26FACD9400497F05 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -224,7 +238,9 @@
 				4EBF60DD26FA74BA005AF26F /* CGFloat.swift in Sources */,
 				4E60B17D26FB54A000497F05 /* FoodCategories.swift in Sources */,
 				4ECB105E26FCC47100DBBFFD /* Font.swift in Sources */,
+				4E60B17926FAC84200497F05 /* YelpApiService.swift in Sources */,
 				4EBF60D926FA71E9005AF26F /* String.swift in Sources */,
+				4E60B17B26FACD9400497F05 /* HomeViewModel.swift in Sources */,
 				4EBF60DA26FA71E9005AF26F /* Images.swift in Sources */,
 				4EBF60E526FA75FB005AF26F /* HomeView.swift in Sources */,
 				4EBF60C726FA6EC2005AF26F /* PermissionView.swift in Sources */,
