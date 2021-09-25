@@ -5,34 +5,21 @@
 //  Created by Gary Tokman on 9/21/21.
 //
 
-import Foundation
-import CoreLocation
 import Combine
+import CoreLocation
+import Foundation
 
 let apiKey = "yelp.com/developers"
 
 struct YelpApiService {
     // search term, user location, category      // output to update list
-    var search: (String, CLLocation, String?) -> AnyPublisher<[Business], Never>
+    var request: (Endpoint) -> AnyPublisher<[Business], Never>
 }
 
 extension YelpApiService {
-    static let live = YelpApiService { term, location, cat in
-        // url component for yelp endpoint
-        var urlComponents = URLComponents(string: "https://api.yelp.com")!
-        urlComponents.path = "/v3/businesses/search"
-        urlComponents.queryItems = [
-            .init(name: "term", value: term),
-            .init(name: "longitude", value: String(location.coordinate.longitude)),
-            .init(name: "latitude", value: String(location.coordinate.latitude)),
-            .init(name: "categories", value: cat ?? "restaurants"),
-        ]
-        let url = urlComponents.url!
-        var request = URLRequest(url: url)
-        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        
+    static let live = YelpApiService { endpoint in
         // URL request and return [Businesses]
-        return URLSession.shared.dataTaskPublisher(for: request)
+        return URLSession.shared.dataTaskPublisher(for: endpoint.request)
             .map(\.data)
             .decode(type: SearchResult.self, decoder: JSONDecoder())
             .map(\.businesses)
@@ -40,6 +27,45 @@ extension YelpApiService {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+}
+
+enum Endpoint {
+    case search(term: String?, location: CLLocation, category: FoodCategory?)
+    case detail(id: String)
+
+    var path: String {
+        switch self {
+        case .search:
+            return "/v3/businesses/search"
+        case .detail(let id):
+            return "/v3/businesses/\(id)"
+        }
+    }
+
+    var queryItems: [URLQueryItem] {
+        switch self {
+        case .search(let term, let location, let category):
+            return [
+                .init(name: "term", value: term),
+                .init(name: "longitude", value: String(location.coordinate.longitude)),
+                .init(name: "latitude", value: String(location.coordinate.latitude)),
+                .init(name: "categories", value: category?.rawValue ?? FoodCategory.all.rawValue),
+            ]
+        case .detail:
+            return []
+        }
+    }
+    
+    var request: URLRequest {
+        var urlComponents = URLComponents(string: "https://api.yelp.com")!
+        urlComponents.path = path
+        urlComponents.queryItems = queryItems
+        let url = urlComponents.url!
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+
 }
 
 // MARK: - SearchResult
@@ -74,6 +100,27 @@ struct Business: Codable {
     }
 }
 
+extension Business {
+    var formattedRating: String {
+        String(format: "%.1f", rating ?? 0.0)
+    }
+
+    var formattedCategory: String {
+        categories?.first?.title ?? "none"
+    }
+
+    var formattedName: String {
+        name ?? "none"
+    }
+
+    var formattedImageUrl: URL? {
+        if let imageUrl = imageURL {
+            return URL(string: imageUrl)
+        }
+        return nil
+    }
+}
+
 // MARK: - Category
 struct Category: Codable {
     let alias, title: String?
@@ -94,4 +141,3 @@ struct Location: Codable {
         case zipCode = "zip_code"
     }
 }
-

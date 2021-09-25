@@ -5,19 +5,35 @@
 //  Created by Gary Tokman on 9/21/21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class HomeViewModel: ObservableObject {
-    
+
     @Published var businesses = [Business]()
-    @Published var searchText = ""
+    @Published var searchText: String
+    @Published var selectedCategory: FoodCategory
     
-    func search() {
-        let live = YelpApiService.live
+    init() {
+        searchText = ""
+        selectedCategory = .all
         
-        live.search("food", .init(latitude: 42.3601, longitude: -71.0589), nil)
+        request()
+    }
+
+    func request(service: YelpApiService = .live) {
+        $searchText
+            .combineLatest($selectedCategory)
+            .flatMap { (term, category) in
+                service.request(
+                    .search(
+                        term: term,
+                        location: .init(latitude: 42.3601, longitude: -71.0589),
+                        category: term.isEmpty ? category : nil
+                    )
+                )
+            }
             .assign(to: &$businesses)
     }
-    
+
 }

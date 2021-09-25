@@ -9,25 +9,39 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct HomeView: View {
-    
+
     @ObservedObject var viewModel = HomeViewModel()
-    
+
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.businesses, id: \.id) { business in
-                    Text(business.name ?? "no name")
+            VStack(alignment: .leading) {
+                // Category
+                Group {
+                    Text("Categories")
+                        .bold()
+                        .padding(.leading, .large)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(FoodCategory.allCases, id: \.self) { category in
+                                CategoryView(selectedCategory: $viewModel.selectedCategory, category: category)
+                            }
+                        }.padding(.small)
+                    }
+                }
+                // List
+                List(viewModel.businesses, id: \.id) { business in
+                    BusinessCell(business: business)
+                        .listRowSeparator(.hidden)
+                }
+                .listStyle(.plain)
+                .navigationTitle(Text("Boston"))
+                .searchable(text: $viewModel.searchText)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Image(systemName: "person")
+                    }
                 }
             }
-            .listStyle(.plain)
-            .navigationTitle(Text("Boston"))
-            .searchable(text: $viewModel.searchText)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "person")
-                }
-            }
-            .onAppear(perform: viewModel.search)
 
         }
     }
