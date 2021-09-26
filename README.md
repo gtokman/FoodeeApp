@@ -11,12 +11,15 @@
   <img align="left" alt="Gary's Medium" width="22px" src="https://user-images.githubusercontent.com/12258850/114738284-d2b6c700-9d15-11eb-8071-96fd30aa8b11.png" />
 </a>
 
-<br>
+<br>kj
 <br>
 
-SwiftUI app for food lovers. Find the first part here on [YouTube](https://www.youtube.com/c/GTokman/videos). <br>
+* Foodee is an app for food lovers build in SwiftUI.
+* Restaurant data is via Yelp, get an apiKey [here](www.yelp.com/developers)
+* Jump to the get started section below
+* The YT tutorials can be found on my [channel](https://www.youtube.com/watch?v=-DSdeMlxlis&t=56s&ab_channel=GaryTokman).
+* Figma and bonus video on my [Patreon](https://www.patreon.com/6ary) page. <br>
 
-Second Part on my [Patreon](https://www.patreon.com/6ary) page. <br>
 ## About
 * Using Combine + URLSession + Codable + SwiftUI
 * AutoComplete endpoint using new `.searchable` modifier and more
