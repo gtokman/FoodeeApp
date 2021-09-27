@@ -9,15 +9,16 @@ import Combine
 import CoreLocation
 import Foundation
 
-let apiKey = "yelp.com/developers"
+let apiKey = ""
 
 struct YelpApiService {
     // search term, user location, category      // output to update list
     var request: (Endpoint) -> AnyPublisher<[Business], Never>
+    var details: (Endpoint) -> AnyPublisher<Business?, Never>
 }
 
 extension YelpApiService {
-    static let live = YelpApiService { endpoint in
+    static let live = YelpApiService(request: { endpoint in
         // URL request and return [Businesses]
         return URLSession.shared.dataTaskPublisher(for: endpoint.request)
             .map(\.data)
@@ -26,7 +27,15 @@ extension YelpApiService {
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-    }
+    }, details: { endpoint in
+        // URL request and return Businesses
+        return URLSession.shared.dataTaskPublisher(for: endpoint.request)
+            .map(\.data)
+            .decode(type: Business?.self, decoder: JSONDecoder())
+            .replaceError(with: nil)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    })
 }
 
 enum Endpoint {
@@ -76,27 +85,98 @@ struct SearchResult: Codable {
 
 // MARK: - Business
 struct Business: Codable {
-    let rating: Double?
-    let price, phone, id, alias: String?
-    let isClosed: Bool?
-    let categories: [Category]?
-    let reviewCount: Double?
-    let name: String?
-    let url: String?
-    let coordinates: Coordinates?
+    let id, alias, name: String?
     let imageURL: String?
+    let isClaimed, isClosed: Bool?
+    let url: String?
+    let phone, displayPhone: String?
+    let reviewCount: Int?
+    let categories: [Category]?
+    let rating: Double?
     let location: Location?
-    let distance: Double?
+    let coordinates: Coordinates?
+    let photos: [String]?
+    let price: String?
+    let hours: [Hour]?
     let transactions: [String]?
+    let specialHours: [SpecialHour]?
 
     enum CodingKeys: String, CodingKey {
-        case rating, price, phone, id, alias
-        case isClosed = "is_closed"
-        case categories
-        case reviewCount = "review_count"
-        case name, url, coordinates
+        case id, alias, name
         case imageURL = "image_url"
-        case location, distance, transactions
+        case isClaimed = "is_claimed"
+        case isClosed = "is_closed"
+        case url, phone
+        case displayPhone = "display_phone"
+        case reviewCount = "review_count"
+        case categories, rating, location, coordinates, photos, price, hours, transactions
+        case specialHours = "special_hours"
+    }
+}
+
+// MARK: - Category
+struct Category: Codable {
+    let alias, title: String?
+}
+
+// MARK: - Coordinates
+struct Coordinates: Codable {
+    let latitude, longitude: Double?
+}
+
+// MARK: - Hour
+struct Hour: Codable {
+    let hourOpen: [Open]?
+    let hoursType: String?
+    let isOpenNow: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case hourOpen = "open"
+        case hoursType = "hours_type"
+        case isOpenNow = "is_open_now"
+    }
+}
+
+// MARK: - Open
+struct Open: Codable {
+    let isOvernight: Bool?
+    let start, end: String?
+    let day: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case isOvernight = "is_overnight"
+        case start, end, day
+    }
+}
+
+// MARK: - Location
+struct Location: Codable {
+    let address1, address2, address3, city: String?
+    let zipCode, country, state: String?
+    let displayAddress: [String]?
+    let crossStreets: String?
+
+    enum CodingKeys: String, CodingKey {
+        case address1, address2, address3, city
+        case zipCode = "zip_code"
+        case country, state
+        case displayAddress = "display_address"
+        case crossStreets = "cross_streets"
+    }
+}
+
+// MARK: - SpecialHour
+struct SpecialHour: Codable {
+    let date: String?
+    let isClosed: Bool?
+    let start, end: String?
+    let isOvernight: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case date
+        case isClosed = "is_closed"
+        case start, end
+        case isOvernight = "is_overnight"
     }
 }
 
@@ -112,32 +192,27 @@ extension Business {
     var formattedName: String {
         name ?? "none"
     }
+            
+    var formattedPhoneNumber: String {
+        displayPhone ?? "none"
+    }
+    
+    var formattedPrice: String {
+        price ?? "none"
+    }
+    
+    var formattedAddress: String {
+        location?.displayAddress?.first ?? "none"
+    }
+    
+    var images: [URL] {
+        return photos?.compactMap { URL.init(string: $0) } ?? []
+    }
 
     var formattedImageUrl: URL? {
         if let imageUrl = imageURL {
             return URL(string: imageUrl)
         }
         return nil
-    }
-}
-
-// MARK: - Category
-struct Category: Codable {
-    let alias, title: String?
-}
-
-// MARK: - Coordinates
-struct Coordinates: Codable {
-    let latitude, longitude: Double?
-}
-
-// MARK: - Location
-struct Location: Codable {
-    let city, country, address2, address3: String?
-    let state, address1, zipCode: String?
-
-    enum CodingKeys: String, CodingKey {
-        case city, country, address2, address3, state, address1
-        case zipCode = "zip_code"
     }
 }

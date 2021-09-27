@@ -22,6 +22,8 @@
 		4EBF60E026FA7523005AF26F /* ExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4EBF60DF26FA7523005AF26F /* ExtensionKit */; };
 		4EBF60E526FA75FB005AF26F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60E426FA75FB005AF26F /* HomeView.swift */; };
 		4ECB105E26FCC47100DBBFFD /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECB105D26FCC47100DBBFFD /* Font.swift */; };
+		4EF8B10F270163AF00AFF2A4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8B10E270163AF00AFF2A4 /* DetailView.swift */; };
+		4EF8B11127016DD000AFF2A4 /* DetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8B11027016DD000AFF2A4 /* DetailCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		4ECB105B26FCC40600DBBFFD /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4ECB105C26FCC44500DBBFFD /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		4ECB105D26FCC47100DBBFFD /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		4EF8B10E270163AF00AFF2A4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4EF8B11027016DD000AFF2A4 /* DetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 		4EBF60E126FA756C005AF26F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EF8B10D270163A400AFF2A4 /* Details */,
 				4EBF60E326FA75EF005AF26F /* Home */,
 				4EBF60E226FA757F005AF26F /* Permisson */,
 			);
@@ -161,6 +166,15 @@
 				4E245CFC26FE975500AB33E8 /* BusinessCell.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4EF8B10D270163A400AFF2A4 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				4EF8B10E270163AF00AFF2A4 /* DetailView.swift */,
+				4EF8B11027016DD000AFF2A4 /* DetailCard.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,7 +259,9 @@
 				4E60B17926FAC84200497F05 /* YelpApiService.swift in Sources */,
 				4EBF60D926FA71E9005AF26F /* String.swift in Sources */,
 				4E245CFD26FE975500AB33E8 /* BusinessCell.swift in Sources */,
+				4EF8B11127016DD000AFF2A4 /* DetailCard.swift in Sources */,
 				4E245CFB26FE92C800AB33E8 /* CategoryView.swift in Sources */,
+				4EF8B10F270163AF00AFF2A4 /* DetailView.swift in Sources */,
 				4E60B17B26FACD9400497F05 /* HomeViewModel.swift in Sources */,
 				4EBF60DA26FA71E9005AF26F /* Images.swift in Sources */,
 				4EBF60E526FA75FB005AF26F /* HomeView.swift in Sources */,

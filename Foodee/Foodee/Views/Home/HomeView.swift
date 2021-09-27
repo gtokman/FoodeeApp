@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct HomeView: View {
 
-    @ObservedObject var viewModel = HomeViewModel()
+    @EnvironmentObject var viewModel: HomeViewModel
 
     var body: some View {
         NavigationView {
@@ -30,8 +30,10 @@ struct HomeView: View {
                 }
                 // List
                 List(viewModel.businesses, id: \.id) { business in
-                    BusinessCell(business: business)
-                        .listRowSeparator(.hidden)
+                    NavigationLink(destination: DetailView(id: business.id!)) {
+                        BusinessCell(business: business)
+                            .listRowSeparator(.hidden)
+                    }
                 }
                 .listStyle(.plain)
                 .navigationTitle(Text("Boston"))
@@ -51,5 +53,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(HomeViewModel())
     }
 }
