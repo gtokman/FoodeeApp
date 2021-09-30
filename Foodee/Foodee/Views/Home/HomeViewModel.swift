@@ -18,29 +18,61 @@ final class HomeViewModel: ObservableObject {
     @Published var selectedCategory: FoodCategory
     @Published var region: MKCoordinateRegion
     @Published var business: Business?
+    @Published var showModal: Bool
+    @Published var cityName = ""
+    
+    let manager = CLLocationManager()
 
     init() {
         searchText = ""
         selectedCategory = .all
         region = .init()
         business = nil
-
+        showModal = manager.authorizationStatus == .notDetermined
+        manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        
         request()
+    }
+    
+    func requestPermission() {
+        manager
+            .requestLocationWhenInUseAuthorization()
+            .map { $0 == .notDetermined }
+            .assign(to: &$showModal)
+    }
+    
+    func getLocation() -> AnyPublisher<CLLocation, Never> {
+        manager.receiveLocationUpdates(oneTime: true)
+            .replaceError(with: [])
+            .compactMap(\.first)
+            .eraseToAnyPublisher()
     }
 
     func request(service: YelpApiService = .live) {
+        let location = getLocation().share()
+        
         $searchText
-            .combineLatest($selectedCategory)
-            .flatMap { (term, category) in
+            .combineLatest($showModal, $selectedCategory, location)
+            .print()
+            .flatMap { (term, show, category, location) in
                 service.request(
                     .search(
                         term: term,
-                        location: .init(latitude: 42.3601, longitude: -71.0589),
+                        location: location,
                         category: term.isEmpty ? category : nil
                     )
                 )
             }
             .assign(to: &$businesses)
+        
+        location
+            .flatMap {
+                $0.reverseGeocode()
+            }
+            .compactMap(\.first)
+            .compactMap(\.locality)
+            .replaceError(with: "")
+            .assign(to: &$cityName)
     }
 
     func requestDetails(forId id: String) {

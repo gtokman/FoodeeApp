@@ -36,7 +36,7 @@ struct HomeView: View {
                     }
                 }
                 .listStyle(.plain)
-                .navigationTitle(Text("Boston"))
+                .navigationTitle(Text(viewModel.cityName))
                 .searchable(text: $viewModel.searchText)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -44,7 +44,15 @@ struct HomeView: View {
                     }
                 }
             }
-
+            .sheet(isPresented: $viewModel.showModal, onDismiss: nil) {
+                PermissionView {
+                    viewModel.requestPermission()
+                }
+            }
+            .onChange(of: viewModel.showModal) { newValue in
+                viewModel.request()
+            }
+            
         }
     }
 }

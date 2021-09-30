@@ -28,7 +28,7 @@ struct DetailCard: View {
                     Text(business.formattedRating)
                     Image("money")
                     Text(business.formattedPrice)
-                }
+                }.font(.subheadline)
             }
 
             Group {
@@ -39,6 +39,7 @@ struct DetailCard: View {
                     Text(business.formattedPhoneNumber)
                     Spacer()
                 }
+                .font(.subheadline)
                 .padding(.bottom, .small)
             }
 
@@ -61,9 +62,9 @@ struct DetailCard: View {
 
         }
         .padding().padding()
-//        .background(Color.red)
-//        .cornerRadius(20)
-        .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.6)
+        .background(Color.white)
+        .cornerRadius(20)
+        .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.65)
 
     }
 }
