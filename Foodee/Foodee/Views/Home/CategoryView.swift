@@ -18,13 +18,16 @@ struct CategoryView: View {
                 Text(category.emoji)
                     .font(.title)
                 Text(category.rawValue.capitalized)
-                    .bold()
+                    .font(.custom(.poppinsSemibold, size: 16))
             }
         }
         .padding(.small)
         .padding(.horizontal, .medium)
         .background(selectedCategory == category ? Color.red : .white)
         .cornerRadius(20)
+        .padding(.top, .small)
+        .padding(.bottom, .large)
+        .modifier(ShadowModifier())
         .foregroundColor(.black)
     }
 }

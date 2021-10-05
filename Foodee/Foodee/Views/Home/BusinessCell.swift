@@ -27,14 +27,21 @@ struct BusinessCell: View {
             // Labels
             VStack(alignment: .leading, spacing: .small) {
                 Text(business.formattedName)
+                    .font(.custom(.poppinsSemibold, size: .large))
                 Text(business.formattedCategory)
+                    .font(.custom(.poppinsRegular, size: .large))
                 HStack {
                     Text(business.formattedRating)
+                        .font(.custom(.poppinsRegular, size: .large))
                     Image("star")
                 }
             }
             Spacer()
         }
+        .padding(.small)
+        .background(Color.white)
+        .cornerRadius(.large)
+        .modifier(ShadowModifier())
     }
 }
 

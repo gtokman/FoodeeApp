@@ -15,33 +15,40 @@ struct DetailCard: View {
         VStack(alignment: .leading, spacing: 2) {
             Group {
                 Text(business.formattedName)
-                    .bold()
-                Text(business.formattedCategory)
-                    .font(.subheadline)
+                    .font(.custom(.poppinsSemibold, size: 16))
+                Text(business.formattedCategories)
+                    .font(.custom(.poppinsRegular, size: 14))
+                    .padding(.bottom, .large)
             }
 
             Group {
                 HStack {
-                    Image("map")
-                    Text(business.formattedAddress)
-                    Image("star")
+                    Image(Asset.map.name)
+                    Button(action: navigate) {
+                        Text(business.formattedAddress)
+                    }
+                    Image(Asset.star.name)
                     Text(business.formattedRating)
-                    Image("money")
+                    Image(Asset.money.name)
                     Text(business.formattedPrice)
                 }.font(.subheadline)
             }
+            .font(.custom(.poppinsRegular, size: 14))
 
             Group {
                 HStack {
-                    Image("clock")
-                    Text("Open")
-                    Image("phone")
-                    Text(business.formattedPhoneNumber)
+                    Image(Asset.clock.name)
+                    Text(business.dayOfTheWeek)
+                    Image(Asset.phone.name)
+                    Button(action: phone) {
+                        Text(business.formattedPhoneNumber)
+                    }
                     Spacer()
                 }
                 .font(.subheadline)
-                .padding(.bottom, .small)
+                .padding(.bottom, .large)
             }
+            .font(.custom(.poppinsRegular, size: 14))
 
             Group {
                 TabView {
@@ -55,7 +62,7 @@ struct DetailCard: View {
 
                     }
                 }
-                .frame(height: 250)
+                .frame(height: 290)
                 .cornerRadius(.large)
                 .tabViewStyle(.page)
             }
@@ -66,6 +73,15 @@ struct DetailCard: View {
         .cornerRadius(20)
         .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.65)
 
+    }
+
+    func phone() {
+        UIApplication.shared.openPhone(calling: business.phone ?? "")
+    }
+
+    func navigate() {
+        let query = "\(business.coordinates?.latitude ?? 0),\(business.coordinates?.longitude ?? 0)"
+        UIApplication.shared.openExternalMapApp(query: query)
     }
 }
 

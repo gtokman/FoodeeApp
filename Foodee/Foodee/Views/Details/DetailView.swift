@@ -12,6 +12,7 @@ import SwiftUI
 struct DetailView: View {
     let id: String
     @EnvironmentObject var viewModel: HomeViewModel
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -20,8 +21,10 @@ struct DetailView: View {
                 .fill(Color.clear)
 
             // Map
-            Map(coordinateRegion: $viewModel.region)
-                .frame(height: UIScreen.main.bounds.height * 0.45)
+            Map(coordinateRegion: $viewModel.region, annotationItems: viewModel.business != nil ? viewModel.business!.mapItems : []) {
+                MapMarker(coordinate: $0.coordinate, tint: .blue)
+            }
+            .frame(height: UIScreen.main.bounds.height * 0.45)
 
         }.overlay(
             // Card
@@ -32,6 +35,16 @@ struct DetailView: View {
         .onAppear {
             viewModel.requestDetails(forId: id)
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: { presentationMode.wrappedValue.dismiss() }) {
+                    Image(systemName: "chevron.backward.circle.fill")
+                        .font(.title)
+                }
+                .tint(.blue)
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

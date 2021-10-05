@@ -17,9 +17,9 @@ struct HomeView: View {
             VStack(alignment: .leading) {
                 // Category
                 Group {
-                    Text("Categories")
-                        .bold()
-                        .padding(.leading, .large)
+                    Text(L10n.categories)
+                        .font(.custom(.poppinsSemibold, size: 16))
+                        .padding(.top, .small)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(FoodCategory.allCases, id: \.self) { category in
@@ -27,22 +27,37 @@ struct HomeView: View {
                             }
                         }.padding(.small)
                     }
-                }
+                }.padding(.leading, .large)
+
                 // List
                 List(viewModel.businesses, id: \.id) { business in
-                    NavigationLink(destination: DetailView(id: business.id!)) {
+                    ZStack {
+                        NavigationLink(destination: DetailView(id: business.id!)) {
+                            EmptyView().opacity(0).frame(width: 0)
+                        }
                         BusinessCell(business: business)
-                            .listRowSeparator(.hidden)
+                            .padding(.bottom, .small)
                     }
+                    .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
                 .navigationTitle(Text(viewModel.cityName))
-                .searchable(text: $viewModel.searchText)
+                .searchable(text: $viewModel.searchText, prompt: Text(L10n.searchFood)) {
+                    ForEach(viewModel.completions, id: \.self) { completion in
+                        Text(completion).searchCompletion(completion)
+                    }
+                }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Image(systemName: "person")
                     }
                 }
+                .safeAreaInset(edge: .bottom) {
+                    Rectangle()
+                        .fill(LinearGradient(colors: [.white, .white.opacity(0)], startPoint: .bottom, endPoint: .top))
+                        .frame(height: 90)
+                }
+                .edgesIgnoringSafeArea(.bottom)
             }
             .sheet(isPresented: $viewModel.showModal, onDismiss: nil) {
                 PermissionView {
@@ -52,7 +67,7 @@ struct HomeView: View {
             .onChange(of: viewModel.showModal) { newValue in
                 viewModel.request()
             }
-            
+
         }
     }
 }

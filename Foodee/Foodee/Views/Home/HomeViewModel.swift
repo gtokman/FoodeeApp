@@ -20,6 +20,7 @@ final class HomeViewModel: ObservableObject {
     @Published var business: Business?
     @Published var showModal: Bool
     @Published var cityName = ""
+    @Published var completions = [String]()
     
     let manager = CLLocationManager()
 
@@ -52,6 +53,7 @@ final class HomeViewModel: ObservableObject {
         let location = getLocation().share()
         
         $searchText
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .combineLatest($showModal, $selectedCategory, location)
             .print()
             .flatMap { (term, show, category, location) in
@@ -73,6 +75,15 @@ final class HomeViewModel: ObservableObject {
             .compactMap(\.locality)
             .replaceError(with: "")
             .assign(to: &$cityName)
+        
+        $searchText
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .combineLatest(location)
+            .flatMap { term, location in
+                service.completion(.completion(text: term, location: location))
+            }
+            .map { $0.map(\.text) }
+            .assign(to: &$completions)
     }
 
     func requestDetails(forId id: String) {

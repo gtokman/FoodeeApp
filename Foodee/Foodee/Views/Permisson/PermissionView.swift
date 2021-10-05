@@ -36,24 +36,25 @@ struct PermissionView: View {
                 }.frame(height: proxy.size.height / 3)
 
                 // Text & Button
-                Text("Foodee")
-                    .font(.title)
+                Text(L10n.foodee)
+                    .font(.custom(.poppinsSemibold, size: 38))
+                    .padding(.bottom, .large)
 
-                Text("Find cool spots to eat")
-                    .font(.headline)
+                Text(L10n.findNewCoolSpotsToEat)
+                    .font(.custom(.poppinsMedium, size: 16))
 
                 Spacer()
 
                 // Button
                 Button(action: action) {
-                    Text("Get Started")
-                        .bold()
+                    Text(L10n.getStarted)
+                        .font(.custom(.poppinsMedium, size: 16))
                 }
                 .padding()
                 .frame(maxWidth: proxy.size.width - 50)
                 .background(Color.red)
                 .cornerRadius(50)
-                .shadow(radius: 10)
+                .modifier(ShadowModifier())
                 .foregroundColor(.white)
             }
         }.onAppear {
