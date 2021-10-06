@@ -9,7 +9,7 @@ import Combine
 import CoreLocation
 import Foundation
 
-let apiKey = ""
+let apiKey = "vWjeDlebiyiBaJ4BHgjek2Ckf4CnAEztE8NLrEsCx0FdFDr2EMx7QA4GifAepKeNT0eK1rEPK_KHnIVgouKKVBxwYOrc_WcRNjQYzkpdoBbMB5TUYK2OandlyfEHXHY"
 
 struct YelpApiService {
     // search term, user location, category      // output to update list
@@ -37,6 +37,7 @@ extension YelpApiService {
                 .decode(type: Business?.self, decoder: JSONDecoder())
                 .replaceError(with: nil)
                 .receive(on: DispatchQueue.main)
+                .print("yo11")
                 .eraseToAnyPublisher()
         }
     ) { endpoint in

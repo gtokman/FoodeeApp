@@ -6,10 +6,10 @@
 //
 
 import Combine
+import CoreLocation
+import ExtensionKit
 import Foundation
 import MapKit
-import ExtensionKit
-import CoreLocation
 
 final class HomeViewModel: ObservableObject {
 
@@ -22,6 +22,8 @@ final class HomeViewModel: ObservableObject {
     @Published var cityName = ""
     @Published var completions = [String]()
     
+    var cancellables = [AnyCancellable]()
+    
     let manager = CLLocationManager()
 
     init() {
@@ -31,17 +33,17 @@ final class HomeViewModel: ObservableObject {
         business = nil
         showModal = manager.authorizationStatus == .notDetermined
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        
+
         request()
     }
-    
+
     func requestPermission() {
         manager
             .requestLocationWhenInUseAuthorization()
             .map { $0 == .notDetermined }
             .assign(to: &$showModal)
     }
-    
+
     func getLocation() -> AnyPublisher<CLLocation, Never> {
         manager.receiveLocationUpdates(oneTime: true)
             .replaceError(with: [])
@@ -51,7 +53,7 @@ final class HomeViewModel: ObservableObject {
 
     func request(service: YelpApiService = .live) {
         let location = getLocation().share()
-        
+
         $searchText
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .combineLatest($showModal, $selectedCategory, location)
@@ -66,7 +68,7 @@ final class HomeViewModel: ObservableObject {
                 )
             }
             .assign(to: &$businesses)
-        
+
         location
             .flatMap {
                 $0.reverseGeocode()
@@ -75,7 +77,7 @@ final class HomeViewModel: ObservableObject {
             .compactMap(\.locality)
             .replaceError(with: "")
             .assign(to: &$cityName)
-        
+
         $searchText
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .combineLatest(location)
@@ -86,31 +88,24 @@ final class HomeViewModel: ObservableObject {
             .assign(to: &$completions)
     }
 
-    func requestDetails(forId id: String) {
-        let live = YelpApiService.live
+    func requestDetails(forId id: String, service: YelpApiService = .live) {
 
-        let details =
-            live
+        service
             .details(.detail(id: id))
-            .share()
+            .sink { _ in
 
-        details
-            .compactMap { business in
-                CLLocationCoordinate2D(
+            } receiveValue: { [weak self] business in
+                let coor = CLLocationCoordinate2D(
                     latitude: business?.coordinates?.latitude ?? 0,
                     longitude: business?.coordinates?.longitude ?? 0
                 )
-            }
-            .compactMap { coor in
-                MKCoordinateRegion(
+                let region = MKCoordinateRegion(
                     center: coor,
                     span: .init(latitudeDelta: 0.001, longitudeDelta: 0.001)
                 )
-            }
-            .assign(to: &$region)
-        
-        details
-            .assign(to: &$business)
+                self?.business = business
+                self?.region = region
+            }.store(in: &cancellables)
     }
 
 }

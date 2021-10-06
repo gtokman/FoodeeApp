@@ -28,7 +28,19 @@
 		4EFCB9FD270A037C00290BE7 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCB9FA270A037C00290BE7 /* Poppins-SemiBold.ttf */; };
 		4EFCB9FE270A037C00290BE7 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCB9FB270A037C00290BE7 /* Poppins-Regular.ttf */; };
 		4EFCBA01270A04D800290BE7 /* ShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFCBA00270A04D800290BE7 /* ShadowModifier.swift */; };
+		4EFCBA19270CD22800290BE7 /* FoodeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFCBA18270CD22800290BE7 /* FoodeeTests.swift */; };
+		4EFCBA21270CD2B900290BE7 /* CombineExpectations in Frameworks */ = {isa = PBXBuildFile; productRef = 4EFCBA20270CD2B900290BE7 /* CombineExpectations */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4EFCBA1A270CD22800290BE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EBF60B926FA6EC1005AF26F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4EBF60C026FA6EC2005AF26F;
+			remoteInfo = Foodee;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4E245CFA26FE92C800AB33E8 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -53,6 +65,8 @@
 		4EFCB9FA270A037C00290BE7 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		4EFCB9FB270A037C00290BE7 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4EFCBA00270A04D800290BE7 /* ShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowModifier.swift; sourceTree = "<group>"; };
+		4EFCBA16270CD22800290BE7 /* FoodeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EFCBA18270CD22800290BE7 /* FoodeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodeeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +75,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF60E026FA7523005AF26F /* ExtensionKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EFCBA13270CD22800290BE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EFCBA21270CD2B900290BE7 /* CombineExpectations in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				4EBF60C326FA6EC2005AF26F /* Foodee */,
+				4EFCBA17270CD22800290BE7 /* FoodeeTests */,
 				4EBF60C226FA6EC2005AF26F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				4EBF60C126FA6EC2005AF26F /* Foodee.app */,
+				4EFCBA16270CD22800290BE7 /* FoodeeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,6 +215,14 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		4EFCBA17270CD22800290BE7 /* FoodeeTests */ = {
+			isa = PBXGroup;
+			children = (
+				4EFCBA18270CD22800290BE7 /* FoodeeTests.swift */,
+			);
+			path = FoodeeTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,6 +246,27 @@
 			productReference = 4EBF60C126FA6EC2005AF26F /* Foodee.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4EFCBA15270CD22800290BE7 /* FoodeeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EFCBA1E270CD22800290BE7 /* Build configuration list for PBXNativeTarget "FoodeeTests" */;
+			buildPhases = (
+				4EFCBA12270CD22800290BE7 /* Sources */,
+				4EFCBA13270CD22800290BE7 /* Frameworks */,
+				4EFCBA14270CD22800290BE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4EFCBA1B270CD22800290BE7 /* PBXTargetDependency */,
+			);
+			name = FoodeeTests;
+			packageProductDependencies = (
+				4EFCBA20270CD2B900290BE7 /* CombineExpectations */,
+			);
+			productName = FoodeeTests;
+			productReference = 4EFCBA16270CD22800290BE7 /* FoodeeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -226,6 +279,10 @@
 				TargetAttributes = {
 					4EBF60C026FA6EC2005AF26F = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					4EFCBA15270CD22800290BE7 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 4EBF60C026FA6EC2005AF26F;
 					};
 				};
 			};
@@ -240,12 +297,14 @@
 			mainGroup = 4EBF60B826FA6EC1005AF26F;
 			packageReferences = (
 				4EBF60DE26FA7523005AF26F /* XCRemoteSwiftPackageReference "ExtensionKit" */,
+				4EFCBA1F270CD2B900290BE7 /* XCRemoteSwiftPackageReference "CombineExpectations" */,
 			);
 			productRefGroup = 4EBF60C226FA6EC2005AF26F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				4EBF60C026FA6EC2005AF26F /* Foodee */,
+				4EFCBA15270CD22800290BE7 /* FoodeeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -260,6 +319,13 @@
 				4EBF60CC26FA6EC3005AF26F /* Preview Assets.xcassets in Resources */,
 				4EBF60D526FA70F9005AF26F /* Assets.xcassets in Resources */,
 				4EFCB9FE270A037C00290BE7 /* Poppins-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EFCBA14270CD22800290BE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +354,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4EFCBA12270CD22800290BE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EFCBA19270CD22800290BE7 /* FoodeeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4EFCBA1B270CD22800290BE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4EBF60C026FA6EC2005AF26F /* Foodee */;
+			targetProxy = 4EFCBA1A270CD22800290BE7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4EBF60CD26FA6EC3005AF26F /* Debug */ = {
@@ -469,6 +551,52 @@
 			};
 			name = Release;
 		};
+		4EFCBA1C270CD22800290BE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NTP2A7PJM8;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.garytokman.FoodeeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodee.app/Foodee";
+			};
+			name = Debug;
+		};
+		4EFCBA1D270CD22800290BE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NTP2A7PJM8;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.garytokman.FoodeeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodee.app/Foodee";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -490,6 +618,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4EFCBA1E270CD22800290BE7 /* Build configuration list for PBXNativeTarget "FoodeeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EFCBA1C270CD22800290BE7 /* Debug */,
+				4EFCBA1D270CD22800290BE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -501,6 +638,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		4EFCBA1F270CD2B900290BE7 /* XCRemoteSwiftPackageReference "CombineExpectations" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/CombineExpectations.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -508,6 +653,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4EBF60DE26FA7523005AF26F /* XCRemoteSwiftPackageReference "ExtensionKit" */;
 			productName = ExtensionKit;
+		};
+		4EFCBA20270CD2B900290BE7 /* CombineExpectations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EFCBA1F270CD2B900290BE7 /* XCRemoteSwiftPackageReference "CombineExpectations" */;
+			productName = CombineExpectations;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
