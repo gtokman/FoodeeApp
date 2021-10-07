@@ -30,6 +30,7 @@ struct BusinessCell: View {
                     .font(.custom(.poppinsSemibold, size: .large))
                 Text(business.formattedCategory)
                     .font(.custom(.poppinsRegular, size: .large))
+                    .foregroundColor(.gray)
                 HStack {
                     Text(business.formattedRating)
                         .font(.custom(.poppinsRegular, size: .large))
@@ -38,6 +39,7 @@ struct BusinessCell: View {
             }
             Spacer()
         }
+        .foregroundColor(.black)
         .padding(.small)
         .background(Color.white)
         .cornerRadius(.large)
@@ -48,28 +50,54 @@ struct BusinessCell: View {
 @available(iOS 15.0, *)
 struct BusinessCell_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessCell(
-            business: .init(
-                id: nil,
-                alias: nil,
-                name: "Sweetgreen",
-                imageURL: "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg",
-                isClaimed: nil,
-                isClosed: nil,
-                url: nil,
-                phone: nil,
-                displayPhone: nil,
-                reviewCount: nil,
-                categories: nil,
-                rating: 4.5,
-                location: nil,
-                coordinates: nil,
-                photos: nil,
-                price: nil,
-                hours: nil,
-                transactions: nil,
-                specialHours: nil
+        Group {
+            BusinessCell(
+                business: .init(
+                    id: nil,
+                    alias: nil,
+                    name: "Sweetgreen",
+                    imageURL: "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg",
+                    isClaimed: nil,
+                    isClosed: nil,
+                    url: nil,
+                    phone: nil,
+                    displayPhone: nil,
+                    reviewCount: nil,
+                    categories: nil,
+                    rating: 4.5,
+                    location: nil,
+                    coordinates: nil,
+                    photos: nil,
+                    price: nil,
+                    hours: nil,
+                    transactions: nil,
+                    specialHours: nil
+                )
             )
-        )
+            BusinessCell(
+                business: .init(
+                    id: nil,
+                    alias: nil,
+                    name: "Sweetgreen",
+                    imageURL: "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg",
+                    isClaimed: nil,
+                    isClosed: nil,
+                    url: nil,
+                    phone: nil,
+                    displayPhone: nil,
+                    reviewCount: nil,
+                    categories: nil,
+                    rating: 4.5,
+                    location: nil,
+                    coordinates: nil,
+                    photos: nil,
+                    price: nil,
+                    hours: nil,
+                    transactions: nil,
+                    specialHours: nil
+                )
+            )
+            .environment(\.colorScheme, .dark)
+        }
     }
 }

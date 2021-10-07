@@ -17,7 +17,8 @@ struct DetailCard: View {
                 Text(business.formattedName)
                     .font(.custom(.poppinsSemibold, size: 16))
                 Text(business.formattedCategories)
-                    .font(.custom(.poppinsRegular, size: 14))
+                    .font(.custom(.poppinsRegular, size: 12))
+                    .foregroundColor(.gray)
                     .padding(.bottom, .large)
             }
 
@@ -29,8 +30,10 @@ struct DetailCard: View {
                     }
                     Image(Asset.star.name)
                     Text(business.formattedRating)
+                        .foregroundColor(.black)
                     Image(Asset.money.name)
                     Text(business.formattedPrice)
+                        .foregroundColor(.black)
                 }.font(.subheadline)
             }
             .font(.custom(.poppinsRegular, size: 14))
@@ -39,6 +42,7 @@ struct DetailCard: View {
                 HStack {
                     Image(Asset.clock.name)
                     Text(business.dayOfTheWeek)
+                        .foregroundColor(.black)
                     Image(Asset.phone.name)
                     Button(action: phone) {
                         Text(business.formattedPhoneNumber)
@@ -70,7 +74,8 @@ struct DetailCard: View {
         }
         .padding().padding()
         .background(Color.white)
-        .cornerRadius(20)
+        .cornerRadius(.xLarge)
+        .modifier(ShadowModifier())
         .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.65)
 
     }
@@ -88,29 +93,56 @@ struct DetailCard: View {
 @available(iOS 15.0, *)
 struct DetailCard_Previews: PreviewProvider {
     static var previews: some View {
-        DetailCard(
-            business:
-                .init(
-                    id: nil,
-                    alias: nil,
-                    name: "Sweetgreen",
-                    imageURL: "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg",
-                    isClaimed: nil,
-                    isClosed: nil,
-                    url: nil,
-                    phone: nil,
-                    displayPhone: "(123) 456-7890",
-                    reviewCount: nil,
-                    categories: [.init(alias: nil, title: "healthy")],
-                    rating: 4.5,
-                    location: .init(address1: nil, address2: nil, address3: nil, city: nil, zipCode: nil, country: nil, state: nil, displayAddress: ["12 main st"], crossStreets: nil),
-                    coordinates: nil,
-                    photos: ["https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg", "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg"],
-                    price: "$",
-                    hours: nil,
-                    transactions: nil,
-                    specialHours: nil
-                )
-        )
+        Group {
+            DetailCard(
+                business:
+                    .init(
+                        id: nil,
+                        alias: nil,
+                        name: "Sweetgreen",
+                        imageURL: "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg",
+                        isClaimed: nil,
+                        isClosed: nil,
+                        url: nil,
+                        phone: nil,
+                        displayPhone: "(123) 456-7890",
+                        reviewCount: nil,
+                        categories: [.init(alias: nil, title: "healthy")],
+                        rating: 4.5,
+                        location: .init(address1: nil, address2: nil, address3: nil, city: nil, zipCode: nil, country: nil, state: nil, displayAddress: ["12 main st"], crossStreets: nil),
+                        coordinates: nil,
+                        photos: ["https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg", "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg"],
+                        price: "$",
+                        hours: nil,
+                        transactions: nil,
+                        specialHours: nil
+                    )
+            )
+            DetailCard(
+                business:
+                    .init(
+                        id: nil,
+                        alias: nil,
+                        name: "Sweetgreen",
+                        imageURL: "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg",
+                        isClaimed: nil,
+                        isClosed: nil,
+                        url: nil,
+                        phone: nil,
+                        displayPhone: "(123) 456-7890",
+                        reviewCount: nil,
+                        categories: [.init(alias: nil, title: "healthy")],
+                        rating: 4.5,
+                        location: .init(address1: nil, address2: nil, address3: nil, city: nil, zipCode: nil, country: nil, state: nil, displayAddress: ["12 main st"], crossStreets: nil),
+                        coordinates: nil,
+                        photos: ["https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg", "https://s3-media1.fl.yelpcdn.com/bphoto/j_Ut4i4j2Q4d2TVEDPVt4g/o.jpg"],
+                        price: "$",
+                        hours: nil,
+                        transactions: nil,
+                        specialHours: nil
+                    )
+            )
+            .environment(\.colorScheme, .dark)
+        }
     }
 }

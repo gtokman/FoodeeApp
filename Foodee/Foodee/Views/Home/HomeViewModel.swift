@@ -57,8 +57,7 @@ final class HomeViewModel: ObservableObject {
         $searchText
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .combineLatest($showModal, $selectedCategory, location)
-            .print()
-            .flatMap { (term, show, category, location) in
+            .map { (term, show, category, location) in
                 service.request(
                     .search(
                         term: term,
@@ -67,12 +66,14 @@ final class HomeViewModel: ObservableObject {
                     )
                 )
             }
+            .switchToLatest()
             .assign(to: &$businesses)
 
         location
-            .flatMap {
+            .map {
                 $0.reverseGeocode()
             }
+            .switchToLatest()
             .compactMap(\.first)
             .compactMap(\.locality)
             .replaceError(with: "")
@@ -81,9 +82,10 @@ final class HomeViewModel: ObservableObject {
         $searchText
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .combineLatest(location)
-            .flatMap { term, location in
+            .map { term, location in
                 service.completion(.completion(text: term, location: location))
             }
+            .switchToLatest()
             .map { $0.map(\.text) }
             .assign(to: &$completions)
     }
