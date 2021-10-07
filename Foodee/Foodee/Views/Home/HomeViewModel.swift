@@ -10,6 +10,7 @@ import CoreLocation
 import ExtensionKit
 import Foundation
 import MapKit
+import CoreData
 
 final class HomeViewModel: ObservableObject {
 
@@ -21,10 +22,21 @@ final class HomeViewModel: ObservableObject {
     @Published var showModal: Bool
     @Published var cityName = ""
     @Published var completions = [String]()
+    @Published var showProfile = false 
     
     var cancellables = [AnyCancellable]()
     
     let manager = CLLocationManager()
+    
+    lazy var container: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "BusinessModel")
+        container.loadPersistentStores { _, error in
+            guard error == nil else {
+                fatalError("Could not find core data database!")
+            }
+        }
+        return container
+    }()
 
     init() {
         searchText = ""
@@ -108,6 +120,18 @@ final class HomeViewModel: ObservableObject {
                 self?.business = business
                 self?.region = region
             }.store(in: &cancellables)
+    }
+    
+    // MARK - Core Data
+    
+    func save(business: Business, with context: NSManagedObjectContext) throws {
+        let model = BusinessModel(context: context)
+        model.id = business.id
+        model.imageUrl = business.imageURL
+        model.name = business.name
+        model.category = business.formattedCategory
+        model.rating = business.formattedRating
+        try context.save()
     }
 
 }

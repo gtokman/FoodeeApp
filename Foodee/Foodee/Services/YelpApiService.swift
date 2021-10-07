@@ -311,3 +311,31 @@ extension Open {
     }
 
 }
+
+extension Business {
+    init(
+        model: BusinessModel
+    ) {
+        self.init(
+            id: model.id,
+            alias: nil,
+            name: model.name,
+            imageURL: model.imageUrl,
+            isClaimed: nil,
+            isClosed: nil,
+            url: nil,
+            phone: nil,
+            displayPhone: nil,
+            reviewCount: nil,
+            categories: [.init(alias: nil, title: model.category)],
+            rating: Double(model.rating ?? "0"),
+            location: nil,
+            coordinates: nil,
+            photos: nil,
+            price: nil,
+            hours: nil,
+            transactions: nil,
+            specialHours: nil
+        )
+    }
+}

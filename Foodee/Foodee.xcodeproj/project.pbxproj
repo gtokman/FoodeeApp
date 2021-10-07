@@ -22,6 +22,8 @@
 		4EBF60E026FA7523005AF26F /* ExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4EBF60DF26FA7523005AF26F /* ExtensionKit */; };
 		4EBF60E526FA75FB005AF26F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60E426FA75FB005AF26F /* HomeView.swift */; };
 		4ECB105E26FCC47100DBBFFD /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECB105D26FCC47100DBBFFD /* Font.swift */; };
+		4ECFE78A270E854C00307896 /* BusinessModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFE788270E854C00307896 /* BusinessModel.xcdatamodeld */; };
+		4ECFE78D270E8B2600307896 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFE78C270E8B2600307896 /* ProfileView.swift */; };
 		4EF8B10F270163AF00AFF2A4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8B10E270163AF00AFF2A4 /* DetailView.swift */; };
 		4EF8B11127016DD000AFF2A4 /* DetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8B11027016DD000AFF2A4 /* DetailCard.swift */; };
 		4EFCB9FC270A037C00290BE7 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EFCB9F9270A037C00290BE7 /* Poppins-Medium.ttf */; };
@@ -59,6 +61,8 @@
 		4EBF60E426FA75FB005AF26F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4ECB105926FCC29000DBBFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4ECB105D26FCC47100DBBFFD /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		4ECFE789270E854C00307896 /* BusinessModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BusinessModel.xcdatamodel; sourceTree = "<group>"; };
+		4ECFE78C270E8B2600307896 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4EF8B10E270163AF00AFF2A4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		4EF8B11027016DD000AFF2A4 /* DetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCard.swift; sourceTree = "<group>"; };
 		4EFCB9F9270A037C00290BE7 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 				4EBF60D226FA70F9005AF26F /* Resources */,
 				4EBF60C426FA6EC2005AF26F /* FoodeeApp.swift */,
 				4EBF60CA26FA6EC3005AF26F /* Preview Content */,
+				4ECFE788270E854C00307896 /* BusinessModel.xcdatamodeld */,
 			);
 			path = Foodee;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 		4EBF60E126FA756C005AF26F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4ECFE78B270E8B1A00307896 /* Profile */,
 				4EF8B10D270163A400AFF2A4 /* Details */,
 				4EBF60E326FA75EF005AF26F /* Home */,
 				4EBF60E226FA757F005AF26F /* Permisson */,
@@ -196,6 +202,14 @@
 				4E245CFC26FE975500AB33E8 /* BusinessCell.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4ECFE78B270E8B1A00307896 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4ECFE78C270E8B2600307896 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		4EF8B10D270163A400AFF2A4 /* Details */ = {
@@ -345,12 +359,14 @@
 				4E245CFD26FE975500AB33E8 /* BusinessCell.swift in Sources */,
 				4EF8B11127016DD000AFF2A4 /* DetailCard.swift in Sources */,
 				4E245CFB26FE92C800AB33E8 /* CategoryView.swift in Sources */,
+				4ECFE78D270E8B2600307896 /* ProfileView.swift in Sources */,
 				4EF8B10F270163AF00AFF2A4 /* DetailView.swift in Sources */,
 				4E60B17B26FACD9400497F05 /* HomeViewModel.swift in Sources */,
 				4EBF60DA26FA71E9005AF26F /* Images.swift in Sources */,
 				4EBF60E526FA75FB005AF26F /* HomeView.swift in Sources */,
 				4EBF60C726FA6EC2005AF26F /* PermissionView.swift in Sources */,
 				4EBF60C526FA6EC2005AF26F /* FoodeeApp.swift in Sources */,
+				4ECFE78A270E854C00307896 /* BusinessModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +522,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,7 +553,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -660,6 +676,19 @@
 			productName = CombineExpectations;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		4ECFE788270E854C00307896 /* BusinessModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4ECFE789270E854C00307896 /* BusinessModel.xcdatamodel */,
+			);
+			currentVersion = 4ECFE789270E854C00307896 /* BusinessModel.xcdatamodel */;
+			path = BusinessModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4EBF60B926FA6EC1005AF26F /* Project object */;
 }

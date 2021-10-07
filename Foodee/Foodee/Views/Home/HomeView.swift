@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeView: View {
 
     @EnvironmentObject var viewModel: HomeViewModel
+    @Environment(\.managedObjectContext) var context
 
     var body: some View {
         NavigationView {
@@ -39,6 +40,17 @@ struct HomeView: View {
                             .padding(.bottom, .small)
                     }
                     .listRowSeparator(.hidden)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button("Save") {
+                            // Save here
+                            do {
+                                try viewModel.save(business: business, with: context)
+                                print("Saved")
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    }
                 }
                 .listStyle(.plain)
                 .navigationTitle(Text(viewModel.cityName))
@@ -49,7 +61,9 @@ struct HomeView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "person")
+                        Button(action: { viewModel.showProfile.toggle() }) {
+                            Image(systemName: "person")
+                        }
                     }
                 }
                 .safeAreaInset(edge: .bottom) {
@@ -58,6 +72,9 @@ struct HomeView: View {
                         .frame(height: 90)
                 }
                 .edgesIgnoringSafeArea(.bottom)
+            }
+            .sheet(isPresented: $viewModel.showProfile) {
+                ProfileView()
             }
             .sheet(isPresented: $viewModel.showModal, onDismiss: nil) {
                 PermissionView {
