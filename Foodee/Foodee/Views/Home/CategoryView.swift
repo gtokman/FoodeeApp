@@ -18,7 +18,7 @@ struct CategoryView: View {
                 Text(category.emoji)
                     .font(.title)
                 Text(category.rawValue.capitalized)
-                    .font(.custom(.poppinsSemibold, size: 16))
+                    .font(.custom(.poppinsSemibold, size: 14))
             }
         }
         .padding(.small)

@@ -15,7 +15,8 @@ struct DetailCard: View {
         VStack(alignment: .leading, spacing: 2) {
             Group {
                 Text(business.formattedName)
-                    .font(.custom(.poppinsSemibold, size: 16))
+                    .font(.custom(.poppinsSemibold, size: 18))
+                    .foregroundColor(.black)
                 Text(business.formattedCategories)
                     .font(.custom(.poppinsRegular, size: 12))
                     .foregroundColor(.gray)

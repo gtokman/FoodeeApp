@@ -222,14 +222,14 @@ struct MapItem: Identifiable {
 }
 
 extension Business {
-    
+
     var mapItems: [MapItem] {
         if let name = name, let lat = coordinates?.latitude, let long = coordinates?.longitude {
             return [MapItem(name: name, coordinate: .init(latitude: lat, longitude: long))]
         }
         return []
     }
-    
+
     var formattedRating: String {
         String(format: "%.1f", rating ?? 0.0)
     }
@@ -237,7 +237,7 @@ extension Business {
     var formattedCategory: String {
         categories?.first?.title ?? "none"
     }
-    
+
     var formattedCategories: String {
         categories?
             .lazy
@@ -246,7 +246,7 @@ extension Business {
             .dropLast()
             .dropLast()
             .reduce("", { $0 + String($1) })
-        ?? "None"
+            ?? "None"
     }
 
     var formattedName: String {
@@ -278,7 +278,7 @@ extension Business {
 
     // convert day of the week 0-6 monday-sunday to 1-7 sunday - saturday
     var dayOfTheWeek: String {
-        let dayOfTheWeek = [0: 2, 1: 3, 2: 4, 3: 5, 4: 6, 5: 7, 6: 1]
+        let dayOfTheWeek = [1: 6, 2: 0, 3: 1, 4: 2, 5: 3, 6: 4, 7: 5] // Update here <----
         let currentDay = day
         let newDay = dayOfTheWeek[currentDay]
         return

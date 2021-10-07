@@ -29,7 +29,7 @@ struct BusinessCell: View {
                 Text(business.formattedName)
                     .font(.custom(.poppinsSemibold, size: .large))
                 Text(business.formattedCategory)
-                    .font(.custom(.poppinsRegular, size: .large))
+                    .font(.custom(.poppinsRegular, size: 14))
                     .foregroundColor(.gray)
                 HStack {
                     Text(business.formattedRating)

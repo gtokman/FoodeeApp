@@ -39,10 +39,11 @@ struct ProfileView: View {
                         }
                     }
             }.listStyle(.plain)
+                .listSectionSeparator(.hidden)
             Spacer()
         }
     }
-    
+
     func deleteModel(for id: String) {
         if let model =
             businessModels
